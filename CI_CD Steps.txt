@@ -1,0 +1,54 @@
+CI(Pipeline):
+Part C:
+1. Write a logic to clone application source code from github
+=> git clone https:\\repository path
+
+2. Compile and build from sources using maven
+=> mvn clean 
+   mvn compile 
+   mvn package
+above process is automated using jenkin as jenking is having plugin option which is under installed plugin(if not installed we need to install the same)
+
+3. Build a docker image using jdk base image for above generated jar
+==> Dockerfile
+
+4. The generated docker image should run the above hello world application when container is created using the docker image
+
+==> docker run -itd <container_name>
+
+5. Push docker image to registry [ docker hub for example]
+
+==> All this has been Automated through jenkins
+
+
+CD (Pipeline):
+
+Continuous delivery is a series of practices designed to ensure that code can be rapidly and safely deployed to production by delivering every change to a production-like environment and ensuring business applications and services function as expected through rigorous automated testing
+It will consist the steps from Part C as well as Part D:
+
+1. Write a logic to clone application source code from github
+=> git clone https:\\repository path
+
+2. Compile and build from sources using maven
+=> mvn clean 
+   mvn compile 
+   mvn package
+above process is automated using jenkin as jenking is having plugin option which is under installed plugin(if not installed we need to install the same)
+
+3. Build a docker image using jdk base image for above generated jar
+==> Dockerfile
+
+4. The generated docker image should run the above hello world application when container is created using the docker image
+
+==> docker run -itd <container_name>
+
+5. Push docker image to registry [ docker hub for example]
+
+==> All this has been Automated through jenkins
+
+Assumption K8S/OCP is already installed and running
+1. Generate/create k8s deployment descriptors for above docker image created in Part B above ==> Kindly refer helloworld/helloworld-kube.yml 
+2. Deploy the application to K8S/OCP => helloworld/helloworld-kube.yml 
+3. Small test (ex curl/wget) to get output as “Hello world” from above deployment
+==> Curl was giving a whitelabel error page instead of hello world because the code given seems to be incomplete or missing something and i have invested fair amount of time investigating the issue
+

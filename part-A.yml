@@ -2,7 +2,7 @@
 - name: Pre-requisite setup 
   hosts: localhost
   tasks:
-  - name: Keep packages up-to-date
+  - name: Keep packages up-to-date server
     yum: 
       name: "*" 
       state: latest 

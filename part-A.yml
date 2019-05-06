@@ -1,0 +1,45 @@
+---
+- name: Pre-requisite setup 
+  hosts: localhost
+  tasks:
+  - name: Keep packages up-to-date
+    yum: 
+      name: "*" 
+      state: latest 
+  - name: Install pre-reqq for docker 
+    yum: 
+      name: "{{ item }}"
+      state: latest 
+    loop:
+      - yum-utils 
+      - device-mapper-persistent-data
+      - lvm2
+  - name: Add docker repo 
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo 
+  - name: Install docker 
+    yum:
+      name: docker-ce 
+      state: latest 
+  - name: Enable and start docker service 
+    service:
+      name: docker 
+      state: started 
+      enabled: yes
+  - name: Create developer user 
+    user:
+      name: developer 
+      shell: /bin/bash
+      groups: docker 
+      append: yes
+  - name: Install Maven 
+    yum:
+      name: maven 
+      state: latest 
+  - name: Provide jenkins user access to docker 
+    user: 
+      name: jenkins 
+      groups: docker
+      append: yes
+

@@ -18,6 +18,7 @@ pipeline {
                 }
             }
         }
+        //perform Docker push
         stage('Push Docker Image') {
             when {
                 branch 'master'
